@@ -53,7 +53,7 @@ class client(models.Model):
     modified = models.DateField()
     record = ListField()
 
-	def get_clients(self, raw_idadmin):
+    def get_clients(self, raw_idadmin):
         query = client.objects.get(idadmin = raw_idadmin)
         j = 0
         arr1 = []
@@ -69,15 +69,15 @@ class client(models.Model):
 		        8:'modified'
 		        }
 
-		for q in query:
-		    for i in range(9):
-		        arr2.append(q[datos[i]])
-		    print arr2
-		    arr1.append(arr2)
-		    arr2 = []
-		    j += 1
-	    	return arr1
+	for q in query:
+	    for i in range(9):
+		arr2.append(q[datos[i]])
+	    	print arr2
+	    	arr1.append(arr2)
+	    	arr2 = []
+	    	j += 1
+    	return arr1
 
-	def get_client_all(self, ID_num):
-		cli = client.objects.get(idclient = ID_num)
-		return cli
+    def get_client_all(self, ID_num):
+	cli = client.objects.get(idclient = ID_num)
+	return cli

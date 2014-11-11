@@ -83,7 +83,7 @@ DATABASES = {
         'USER': 'ruser',
         'PASSWORD': 'Cl0ud04',
         'HOST': 'ds051630.mongolab.com',
-        'PORT': '51630',
+        'PORT': 51630,
     }
 }
 
