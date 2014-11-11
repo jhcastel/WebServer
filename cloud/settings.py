@@ -95,7 +95,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
-    '/home/jh/SoluCloud/cloud/mytemplates',
+    '/home/jh/WebServer/mytemplates',
 )
 LOGIN_URL = '/pymes/login/'
 

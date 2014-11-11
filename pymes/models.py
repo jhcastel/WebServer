@@ -49,8 +49,8 @@ class client(models.Model):
     loanrate = models.CharField(max_length=5)
     status = models.CharField(max_length=15)
     risk = models.CharField(max_length=5)
-    created = models.DateTimeField()
-    modified = models.DateTimeField()
+    created = models.DateField()
+    modified = models.DateField()
     record = ListField()
 
 	def get_clients(self, raw_idadmin):
