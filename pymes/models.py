@@ -11,32 +11,32 @@ class user(models.Model):
         email = models.CharField(max_length=100)
         loantype = ListField()
 
-    def __unicode__(self):
-    	return self.username
+        def __unicode__(self):
+        	return self.username
 
-    def pk(self):
-    	return self.UserID
+        def pk(self):
+        	return self.UserID
 
-    def get_user(self, raw_username): 
-    	query = user.objects.get(username = raw_username)
-    	return query
+        def get_user(self, raw_username): 
+        	query = user.objects.get(username = raw_username)
+        	return query
 
-    def get_user_all(self, ID_num):
-        usr2 = user.objects.get(UserID = int(ID_num))
-        return usr2
+        def get_user_all(self, ID_num):
+            usr2 = user.objects.get(UserID = int(ID_num))
+            return usr2
 
-    def set_password(self, raw_password):
-    	self.password = make_password(raw_password)
+        def set_password(self, raw_password):
+        	self.password = make_password(raw_password)
 
-    def check_password(self, raw_password):
-    	def setter(raw_password):
-    		self.set_password(raw_password)
-    		self.save(update_fields=["password"])
-    	return check_password(raw_password, self.password, setter)
+        def check_password(self, raw_password):
+        	def setter(raw_password):
+        		self.set_password(raw_password)
+        		self.save(update_fields=["password"])
+        	return check_password(raw_password, self.password, setter)
 
 
-    def is_authenticated(self):
-    	return True
+        def is_authenticated(self):
+        	return True
 
 
 class client(models.Model):
@@ -54,7 +54,7 @@ class client(models.Model):
     record = ListField()
 
 	def get_clients(self, raw_idadmin):
-		query = client.objects.get(idadmin = raw_idadmin)
+        query = client.objects.get(idadmin = raw_idadmin)
         j = 0
         arr1 = []
         arr2 = []
