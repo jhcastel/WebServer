@@ -31,12 +31,12 @@ class UserForm(forms.Form):
 
 def getUser(idadmin):
 	reg=user()
-	reg=user.get(idadmin)
+	reg=user.objects.get(idadmin)
 	return reg
 
 def getLoantypes(idadmin):
 	reg=user()
-	reg=user.get(idadmin)
+	reg=user.objects.get(idadmin)
 	loantypes=set(reg.loantype)
 	return loantypes	
 	 
@@ -45,15 +45,15 @@ class LoanForm(forms.Form):
     rate = forms.DecimalField(required=True, label="Rate")
 
     def save(self, idadmin):
-		user1 = user()
-        	user2 = user1.get_user_all(idadmin)
-	        new_ltype=unicode(self.cleaned_data['category'])+":"+unicode(self.cleaned_data['rate'])
-        	user2.loantype.add(new_ltype)
-        	return user2
+        user1 = user()
+        user2 = user1.get_user_all(idadmin)
+        new_ltype=unicode(self.cleaned_data['category'])+":"+unicode(self.cleaned_data['rate'])
+        user2.loantype.add(new_ltype)
+        return user2
             		
 
 class ClientForm(forms.Form):
-    	CHOICES = [(1, u'opc1'), (2, u'opc2'), (3, u'opc3'), (4, u'opc4')]
+    CHOICES = [(1, u'opc1'), (2, u'opc2'), (3, u'opc3'), (4, u'opc4')]
 	idclient=forms.CharField(max_length=10, required=True, label="Id Client")
 	birthdate=forms.DateField(widget=DateTimePicker(options={"format": "YYYY-MM-DD","pickTime": False}))
 	loanpurpose=forms.ChoiceField(choices=CHOICES)#[(1, u'car'), (2, u'house'), (3, u'other'), (4, u'studies')]) #[(x, x) for x in range(0,100)])
