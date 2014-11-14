@@ -5,7 +5,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy
 from django import forms
 import datetime
-import boto
 from boto.sqs.message import Message
 from boto.sqs.message import RawMessage
 from bootstrap3_datetime.widgets import DateTimePicker
