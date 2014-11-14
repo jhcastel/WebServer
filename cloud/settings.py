@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'cloud.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine.mongodb',
+        'ENGINE': 'django_mongodb_engine',
         'NAME': 'heroku_app31490466',
         'USER': 'heroku_app31490466',
         'PASSWORD': 'repll8pcmm3ct12e3j00f2jc3c',
@@ -109,7 +109,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
-    os.path.join(SITE_ROOT, 'mytemplates'),
+    os.path.join(BASE_DIR, 'mytemplates'),
 )
 LOGIN_URL = '/pymes/login/'
 
