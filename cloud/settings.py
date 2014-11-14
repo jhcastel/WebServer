@@ -109,7 +109,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
-    os.path.join(SITE_ROOT, 'mytemplates'),
+    os.path.join(BASE_DIR, 'mytemplates'),
 )
 LOGIN_URL = '/pymes/login/'
 
