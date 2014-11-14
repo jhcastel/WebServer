@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'cloud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_mongodb_engine',
-        'NAME': 'cloud',
-        'USER': 'ruser',
-        'PASSWORD': 'Cl0ud04',
-        'HOST': 'ds051630.mongolab.com',
-        'PORT': 51630,
+        'NAME': 'heroku_app31490466',
+        'USER': 'heroku_app31490466',
+        'PASSWORD': 'repll8pcmm3ct12e3j00f2jc3c',
+        'HOST': 'ds051970.mongolab.com',
+        'PORT': 51970,
     }
 }
 
