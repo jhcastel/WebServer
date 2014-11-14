@@ -10,7 +10,6 @@ from boto.sqs.message import Message
 from boto.sqs.message import RawMessage
 from bootstrap3_datetime.widgets import DateTimePicker
 from django import forms
-from boto.dynamodb2.table import Table
 from pymes.model_Backend import get_cats, get_rates
 
 class UserForm(forms.Form):
