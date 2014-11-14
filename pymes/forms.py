@@ -53,8 +53,8 @@ class LoanForm(forms.Form):
             		
 
 class ClientForm(forms.Form):
-    CHOICES = [(1, u'opc1'), (2, u'opc2'), (3, u'opc3'), (4, u'opc4')]
-	idclient=forms.CharField(max_length=10, required=True, label="Id Client")
+        CHOICES = [(1, u'opc1'), (2, u'opc2'), (3, u'opc3'), (4, u'opc4')]
+    idclient=forms.CharField(max_length=10, required=True, label="Id Client")
 	birthdate=forms.DateField(widget=DateTimePicker(options={"format": "YYYY-MM-DD","pickTime": False}))
 	loanpurpose=forms.ChoiceField(choices=CHOICES)#[(1, u'car'), (2, u'house'), (3, u'other'), (4, u'studies')]) #[(x, x) for x in range(0,100)])
 	loanamount=forms.CharField(max_length=20, required=True, label="Loan Amount")
