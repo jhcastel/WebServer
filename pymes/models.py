@@ -46,7 +46,7 @@ class user():
 
 
 class client():
-        db = MongoClient(os.environ['MONGOLAB_URI'])
+    db = MongoClient(os.environ['MONGOLAB_URI'])
 
     def __init_(self):
         cliente = db.client
