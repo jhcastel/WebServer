@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 from djangotoolbox.fields import ListField
-
+#
 
 class user(models.Model):
         UserID = models.AutoField(primary_key=True, unique=True)
