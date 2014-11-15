@@ -5,11 +5,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy
 from django import forms
 import datetime
-from boto.sqs.message import Message
-from boto.sqs.message import RawMessage
 from bootstrap3_datetime.widgets import DateTimePicker
 from django import forms
 from pymes.model_Backend import get_cats, get_rates
+from iron_mq import *
 
 class UserForm(forms.Form):
     username = forms.CharField(max_length=20, required=True, label="Username")
@@ -75,12 +74,10 @@ class ClientForm(forms.Form):
 		#arma estructura para la cola id|amount|periodo|rate
 		msg=unicode(client1.idclient)+"|"+unicode(client1.loanamount)+"|"+unicode(client1.loanperiod)+"|"+unicode(client1.loanrate)
 		#conexion a la cola queue
-		sqs=boto.sqs.connect_to_region("us-west-2")
-		q=sqs.get_queue("queue")
-		m=RawMessage()
-		m.set_body(msg)
-		q.write(m)
-	    	return client1
+		mq=IronMQ()
+		queue=mq.queue("queue")
+		queue.post(msg)
+	    return client1
 	
 	def __init__(self, custom_choices=None, *args, **kwargs):
 		idpyme=kwargs.pop('idpyme')
