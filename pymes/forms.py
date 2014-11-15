@@ -18,12 +18,12 @@ class UserForm(forms.Form):
     mail = forms.CharField(max_length=30, required=True, label="e-mail")
 
     def save(self):
-        user1.username = self.cleaned_data['username']
-        user1.password = make_password(self.cleaned_data['password'])
-        user1.firstname = self.cleaned_data['fname']
-        user1.lastname = self.cleaned_data['lname']
-        user1.email = self.cleaned_data['mail']
-        user1.loantype = set([])
+        user1[username] = self.cleaned_data['username']
+        user1[password] = make_password(self.cleaned_data['password'])
+        user1[firstname] = self.cleaned_data['fname']
+        user1[lastname] = self.cleaned_data['lname']
+        user1[email] = self.cleaned_data['mail']
+        user1[loantype] = set([])
         return user1
 
 def getUser(idadmin):

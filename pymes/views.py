@@ -27,11 +27,11 @@ def register(request):
         # valida si el formulario esta correctamente diligenciado
         if user_form.is_valid(): 
             # Guarda info en la DB.
-            user = user_form.save()
+            us_list = user_form.save()
 
             #Se aplica hash al password y sse guarda en la DB
             #user.set_pass(user.password)
-            user.save()
+            user.save(us_list)
             registered = True
             return HttpResponseRedirect('/pymes/')
 
