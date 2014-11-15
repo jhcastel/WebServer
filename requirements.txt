@@ -11,3 +11,4 @@ git+https://github.com/django-nonrel/django.git
 git+git://github.com/django-nonrel/django-permission-backend-nonrel.git@master
 django-mongodb-engine==0.5.1
 iron-mq==0.5
+django-bootstrap3==4.11.0
