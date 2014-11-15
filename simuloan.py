@@ -36,6 +36,19 @@ from decimal import *
 #       }
 #	__defaults__ ={
 #        }
+class client(models.Model):
+    idclient = models.IntegerField(primary_key=True,unique=True)
+    idadmin = models.IntegerField()
+    birthdate = models.DateField()
+    loanamount = models.CharField(max_length=50)
+    loanperiod = models.IntegerField()
+    loanpurpose = models.CharField(max_length=50)
+    loanrate = models.CharField(max_length=5)
+    status = models.CharField(max_length=15)
+    risk = models.CharField(max_length=5)
+    created = models.DateField()
+    modified = models.DateField()
+    record = ListField()
 
 #funcion que consulta a la cola
 def leer_cola():

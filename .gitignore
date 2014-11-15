@@ -1,3 +1,8 @@
+#Python
+*.pyc
+venv
+*.swp
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
