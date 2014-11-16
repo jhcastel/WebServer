@@ -46,7 +46,7 @@ class user():
         	def setter(raw_password):
         		self.set_password(raw_password)
         		self.save(update_fields=["password"])
- 	        return check_password(raw_password, self['password'], setter)
+ 	        return check_password(raw_password, db_pass, setter)
 
         def is_authenticated(self):
         	return True
