@@ -1,16 +1,25 @@
-from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 from djangotoolbox.fields import ListField
-#
+import os
+from pymongo import MongoClient
 
-class user(models.Model):
-        UserID = models.AutoField(primary_key=True, unique=True)
-        username = models.CharField(max_length=200)
-        password = models.CharField(max_length=200)
-        firstname = models.CharField(max_length=200)
-        lastname = models.CharField(max_length=200)
-        email = models.CharField(max_length=100)
-        loantype = ListField()
+def DB_Con():
+    xcn = MongoClient(os.environ['MONGOLAB_URI'])
+    return xcn
+
+class user():
+
+        def __init_(self):
+            xcn = MongoClient(os.environ['MONGOLAB_URI'])
+            db = xcn.get_default_database().user
+            user = db
+            return user
+
+        def save(self, data):
+            xcn = MongoClient(os.environ['MONGOLAB_URI'])
+            db = xcn.get_default_database().user
+            iuser = db.insert(data)
+            return iuser
 
         def __unicode__(self):
         	return self.username
@@ -35,24 +44,23 @@ class user(models.Model):
         		self.save(update_fields=["password"])
         	return check_password(raw_password, self.password, setter)
 
-
         def is_authenticated(self):
         	return True
 
 
-class client(models.Model):
-    idclient = models.IntegerField(primary_key=True,unique=True)
-    idadmin = models.IntegerField()
-    birthdate = models.DateField()
-    loanamount = models.CharField(max_length=50)
-    loanperiod = models.IntegerField()
-    loanpurpose = models.CharField(max_length=50)
-    loanrate = models.CharField(max_length=5)
-    status = models.CharField(max_length=15)
-    risk = models.CharField(max_length=5)
-    created = models.DateField()
-    modified = models.DateField()
-    record = ListField()
+class client():
+    
+    def __init_(self):
+        xcn = MongoClient(os.environ['MONGOLAB_URI'])
+        db = xcn.get_default_database().client
+        cliente = db
+        return cliente
+
+    def save(self, data):
+        xcn = MongoClient(os.environ['MONGOLAB_URI'])
+        db = xcn.get_default_database().client
+        icli = db.insert(data)
+        return icli
 
     def get_clients(self, raw_idadmin):
         query = client.objects.get(idadmin = raw_idadmin)

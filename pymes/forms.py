@@ -1,4 +1,3 @@
-from pymes.models import client, user
 from django.contrib.auth.hashers import make_password
 from django.contrib.admin import widgets
 from django.contrib.auth.forms import AuthenticationForm
@@ -18,12 +17,12 @@ class UserForm(forms.Form):
     mail = forms.CharField(max_length=30, required=True, label="e-mail")
 
     def save(self):
-        user1.username = self.cleaned_data['username']
-        user1.password = make_password(self.cleaned_data['password'])
-        user1.firstname = self.cleaned_data['fname']
-        user1.lastname = self.cleaned_data['lname']
-        user1.email = self.cleaned_data['mail']
-        user1.loantype = set([])
+        user1 = {'username' : self.cleaned_data['username'],
+        'password' : make_password(self.cleaned_data['password']),
+        'firstname' : self.cleaned_data['fname'],
+        'lastname' : self.cleaned_data['lname'],
+        'email' : self.cleaned_data['mail'],
+        'loantype' : []}
         return user1
 
 def getUser(idadmin):
@@ -58,19 +57,20 @@ class ClientForm(forms.Form):
 	loanperiod=forms.CharField(max_length=2, required=True, label="Loan Period")
 	
     	def save(self, idadmin, cat_dict, rate_dict):
-		client1 = client()
-		client1.idadmin= int(idadmin)
-		client1.idclient = unicode(self.cleaned_data['idclient'])
-		client1.birthdate = unicode(self.cleaned_data['birthdate'])
-		client1.loanperiod = int(self.cleaned_data['loanperiod'])
-		client1.loanpurpose = cat_dict[int(self.cleaned_data['loanpurpose'])]
-		client1.loanamount = unicode(self.cleaned_data['loanamount'])
-		client1.loanrate = rate_dict[int(self.cleaned_data['loanpurpose'])]
-		client1.risk= unicode(0)
-		client1.created = unicode (datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
-		client1.modified= unicode(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
-		client1.status = unicode("Pendiente")
-		client1.record = set([])
+		client1 = {
+		'idadmin': int(idadmin),
+		'_id' : unicode(self.cleaned_data['idclient']),
+		'birthdate' : unicode(self.cleaned_data['birthdate']),
+		'loanperiod' : int(self.cleaned_data['loanperiod']),
+		'loanpurpose' : cat_dict[int(self.cleaned_data['loanpurpose'])],
+		'loanamount' : unicode(self.cleaned_data['loanamount']),
+		'loanrate' : rate_dict[int(self.cleaned_data['loanpurpose'])],
+		'risk': unicode(0),
+		'created' : unicode (datetime.datetime.now().strftime('%Y%m%d%H%M%S')),
+		'modified': unicode(datetime.datetime.now().strftime('%Y%m%d%H%M%S')),
+		'status' : unicode("Pendiente"),
+		'record' : []}
+
 		#arma estructura para la cola id|amount|periodo|rate
 		msg=unicode(client1.idclient)+"|"+unicode(client1.loanamount)+"|"+unicode(client1.loanperiod)+"|"+unicode(client1.loanrate)
 		#conexion a la cola queue
