@@ -53,7 +53,7 @@ def get_cats(us_id):
     user2 = user1.get_user_all(us_id)
     i = 1
     cat_choices = []
-    for l in user2.loantype:
+    for l in user2['loantype']:
         a = (i,l.split(":")[0])
         cat_choices.append(a)
         i += 1
@@ -64,7 +64,7 @@ def get_rates(us_id):
     user2 = user1.get_user_all(us_id)
     i = 1
     rate_dict = {}
-    for l in user2.loantype:
+    for l in user2.['loantype']:
         a = l.split(":")[1]
         rate_dict[i] = a 
         i += 1
@@ -75,7 +75,7 @@ def id_cats(us_id):
     user2 = user1.get_user_all(us_id)
     i = 1
     cat_dict = {}
-    for l in user2.loantype:
+    for l in user2.['loantype']:
         a = l.split(":")[0]
         cat_dict[i] = a 
         i += 1
@@ -89,7 +89,7 @@ def load_clients(us_id):
 def load_cli_details(cli_id, us_id):
     cli1 = client()
     info = cli1.get_client_all(cli_id)
-    if info.idadmin == us_id:
+    if info['idadmin'] == us_id:
         return info
     else:
         return False

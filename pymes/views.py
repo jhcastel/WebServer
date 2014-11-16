@@ -200,9 +200,10 @@ def loan_req(request, slug):
     loantype = get_object_or_404('LoanType', slug=slug)
     form = ClientForm(request.POST or None)
     if form.is_valid():
-        client = form.save(commit=False)
-        client.loanpurpose = loantype
-        client.save()
+        clidata = form.save(commit=False)
+        clidata['loanpurpose'] = loantype
+        client1 = client()
+        client1.save()
         return redirect('pymes/')
 
     return render_to_response('pymes/',
@@ -235,15 +236,8 @@ def ClientList(request):
         user2 = load_user(user_id)
         client_list = load_clients(user_id)
         cache.set(key,user2['UserID'])
-        response = render_to_response('pymes/client_records.html',{'data': client_list,'is_authenticated': request.is_authenticated, 'user': user2},context)
+        response = render_to_response('pymes/client_records.html',{'name': user2['firstname'], 'data': client_list,'is_authenticated': request.is_authenticated},context)
         response.set_cookie('sess_id', key)
         return response
     else:
         return render_to_response('pymes/login.html', {}, context)
-
-#class RecordList(ListView):
-#    model = 'Record'
-#    paginate_by = 50 
-#    def get_queryset(self):
-#        queryset = super(RecordList, self).get_queryset().filter(idclient_id=self.request.idclient)
-#        return queryset

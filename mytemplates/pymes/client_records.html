@@ -3,7 +3,7 @@
 
 {% if is_authenticated %}
             {% csrf_token %}
-<h1>Client list from {{ user.firstname }}!</h1>
+<h1>Client list from {{ name }}!</h1>
 <a href="/pymes/logout/">Logout</a><br /><br /><br />
 <form action="/pymes/{{action}}/" method="post" enctype="multipart/form-data">
 <table border="1">

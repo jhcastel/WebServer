@@ -67,7 +67,9 @@ class client():
         return icli
 
     def get_clients(self, raw_idadmin):
-        query = client.objects.get(idadmin = raw_idadmin)
+        xcn = MongoClient(os.environ['MONGOLAB_URI'])
+        db = xcn.get_default_database().client
+        query = db.find({'idadmin' = raw_idadmin})
         j = 0
         arr1 = []
         arr2 = []
@@ -92,5 +94,7 @@ class client():
     	return arr1
 
     def get_client_all(self, ID_num):
-	cli = client.objects.get(idclient = ID_num)
+	xcn = MongoClient(os.environ['MONGOLAB_URI'])
+    db = xcn.get_default_database().client
+    cli = db.find({'_id' = ID_num})
 	return cli

@@ -85,10 +85,10 @@ class ClientForm(forms.Form):
 		
 		xcn=MongoClient(os.environ['MONGOLAB_URI'])
 		db=xcn.get_default_database().client
-		db.insert(client)
+		db.insert(client1)
 
 		#arma estructura para la cola id|amount|periodo|rate
-		msg=unicode(client1.idclient)+"|"+unicode(client1.loanamount)+"|"+unicode(client1.loanperiod)+"|"+unicode(client1.loanrate)
+		msg=unicode(client1['_id'])+"|"+unicode(client1['loanamount'])+"|"+unicode(client1['loanperiod'])+"|"+unicode(client1['loanrate'])
 		#conexion a la cola queue
 		mq=IronMQ()
 		queue=mq.queue("queue")
