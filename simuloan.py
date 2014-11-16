@@ -15,19 +15,19 @@ from pymongo import MongoClient
 from djangotoolbox.fields import ListField
 from django.db import models
 
-class client(models.Model):
-    idclient = models.IntegerField(primary_key=True,unique=True)
-    idadmin = models.IntegerField()
-    birthdate = models.DateField()
-    loanamount = models.CharField(max_length=50)
-    loanperiod = models.IntegerField()
-    loanpurpose = models.CharField(max_length=50)
-    loanrate = models.CharField(max_length=5)
-    status = models.CharField(max_length=15)
-    risk = models.CharField(max_length=5)
-    created = models.DateField()
-    modified = models.DateField()
-    record = ListField()
+#class client(models.Model):
+#    idclient = models.IntegerField(primary_key=True,unique=True)
+#    idadmin = models.IntegerField()
+#    birthdate = models.DateField()
+#    loanamount = models.CharField(max_length=50)
+#    loanperiod = models.IntegerField()
+#    loanpurpose = models.CharField(max_length=50)
+#    loanrate = models.CharField(max_length=5)
+#    status = models.CharField(max_length=15)
+#    risk = models.CharField(max_length=5)
+#    created = models.DateField()
+#    modified = models.DateField()
+#   record = ListField()
 
 #funcion que consulta a la cola
 def leer_cola():
@@ -132,8 +132,11 @@ def genera_cuotas(cod,am,quo,EAR):
 mq=IronMQ()
 queue=mq.queue("queue")
 dict=queue.get()
-datos=str(dict)
-cad=datos.split("u")
-msg=convertir(cad[3])
-msgid=convertir(cad[10])
-genera_plan(msg,msgid)
+if dict is not None
+	datos=str(dict)
+	cad=datos.split("u")
+	msg=convertir(cad[3])
+	msgid=convertir(cad[10])
+	genera_plan(msg,msgid)
+else
+	print "No hay mensajes en la cola"
