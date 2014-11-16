@@ -9,7 +9,7 @@ from django import forms
 from pymes.model_Backend import get_cats, get_rates
 from iron_mq import *
 import pymongo
-from pymongo import MongoClient()
+from pymongo import MongoClient
 
 class UserForm(forms.Form):
     username = forms.CharField(max_length=20, required=True, label="Username")
