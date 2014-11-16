@@ -59,7 +59,7 @@ def user_login(request):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         
-        if user:
+        if user['UserID']:
             request.is_authenticated = True
             key = sha.new(str(time.time())).hexdigest()
             cache.set(key,user['UserID'])
