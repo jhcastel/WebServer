@@ -129,18 +129,16 @@ def genera_cuotas(cod,am,quo,EAR):
 	return vector
 
 # Configuracion de proceso intenso de CPU corre durante k segundos
-
-mq=IronMQ()
-queue=mq.queue("queue")
-dict=queue.get()
-if dict is not None:
-	a=dict['messages'][0]
-	msg=a['body']
-	msgid=a['id']
-	#datos=str(dict)
-	#cad=datos.split("u")
-	#msg=convertir(cad[3])
-	#msgid=convertir(cad[10])
-	genera_plan(msg,msgid)
-else:
-	print "No hay mensajes en la cola"
+try:
+	mq=IronMQ()
+	queue=mq.queue("queue")
+	dict=queue.get()
+	if dict is not None:
+		a=dict['messages'][0]
+		msg=a['body']
+		msgid=a['id']
+		genera_plan(msg,msgid)
+	else:
+		print "No hay mensajes en la cola"
+except:
+	print "Excepcion"
