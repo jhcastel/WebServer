@@ -64,7 +64,7 @@ def modifica_cliente(idclient,datem,record,lamount,risk):
 	obj=db.find_one({"_id":idclient})
 	obj['risk']=unicode(risk)
 	obj['modified']=unicode(datem)
-	obj['record']=set(record)
+	obj['record']=record
 	obj['loanamount']=unicode(lamount)
 	obj['status']="Procesado"
 	db.save(obj)
@@ -87,7 +87,7 @@ def genera_plan(msg,id):
 	for i in range(0, len(plan)):
 		print plan[i]
 	#update bd
-	modifica_cliente(unicode(lclie),unicode(date_mod),set(plan),unicode(lamount),str(round(rsk,2)))
+	modifica_cliente(unicode(lclie),unicode(date_mod),plan,unicode(lamount),str(round(rsk,2)))
 	#elimina mensaje de la cola
 	elimina_msj(id)
 	print "Mensaje eliminado"
