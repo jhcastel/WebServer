@@ -58,7 +58,7 @@ class ClientForm(forms.Form):
 	loanperiod=forms.CharField(max_length=2, required=True, label="Loan Period")
 	
     	def save(self, idadmin, cat_dict, rate_dict):
-		client1 = client{}
+		client1 = {}
 		client1[idadmin]= int(idadmin)
 		client1[_id] = unicode(self.cleaned_data['idclient'])
 		client1[birthdate] = unicode(self.cleaned_data['birthdate'])
