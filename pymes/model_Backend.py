@@ -19,7 +19,7 @@ def authenticate(username, password):
         user1 = user()
         qy = user1.get_user(username)
         if user1.check_password(qy['password'],password):
-            user2 = user1.get_user_all(qy['UserID'])
+            user2 = qy
             return user2
     except UserModel.DoesNotExist:
         # Run the default password hasher once to reduce the timing
