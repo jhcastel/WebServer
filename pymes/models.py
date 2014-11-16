@@ -36,7 +36,7 @@ class user():
         def get_user_all(self, ID_num):
             xcn = MongoClient(os.environ['MONGOLAB_URI'])
             db = xcn.get_default_database().user
-            usr2 = db.find_one({'_id' : int(ID_num)})
+            usr2 = db.find_one({'UserID' : int(ID_num)})
             return usr2
 
         def set_password(self, raw_password):

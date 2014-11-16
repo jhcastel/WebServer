@@ -78,10 +78,9 @@ def user_login(request):
             cache.delete(key)
             request.is_authenticated = True
             key = sha.new(str(time.time())).hexdigest()
-            user1 = load_user(user_id)
-            user2 = user1
-            cache.set(key,user2.pk())
-            response = render_to_response('pymes/loans.html',{'data': user2.pk(),'is_authenticated': request.is_authenticated, 'user': user2},context)
+            user = load_user(user_id)
+            cache.set(key,user['UserID'])
+            response = render_to_response('pymes/loans.html',{'name': user['firstname'], 'number': user['UserID'], 'is_authenticated': request.is_authenticated, 'loanlist': user['loantype']},context)
             response.set_cookie('sess_id', key)
             return response
         else:
@@ -108,7 +107,7 @@ def detail_records(request,idclient):
         user2 = load_user(user_id)
         cli = load_cli_details(idclient, user_id)
         recs = organize_records(cli.record)
-        cache.set(key,user2.pk())
+        cache.set(key,user2['UserID'])
         response = render_to_response('pymes/detail_records.html',{'data': cli,'records': recs,'is_authenticated': request.is_authenticated, 'user': user2},context)
         response.set_cookie('sess_id', key)
         return response
@@ -232,7 +231,7 @@ def ClientList(request):
         key = sha.new(str(time.time())).hexdigest()
         user2 = load_user(user_id)
         client_list = load_clients(user_id)
-        cache.set(key,user2.pk())
+        cache.set(key,user2['UserID'])
         response = render_to_response('pymes/client_records.html',{'data': client_list,'is_authenticated': request.is_authenticated, 'user': user2},context)
         response.set_cookie('sess_id', key)
         return response
