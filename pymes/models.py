@@ -31,7 +31,7 @@ class user():
             xcn = MongoClient(os.environ['MONGOLAB_URI'])
             db = xcn.get_default_database().user
             query = db.find_one({'username' : raw_username})
-        	return query
+	    return query
 
         def get_user_all(self, ID_num):
             xcn = MongoClient(os.environ['MONGOLAB_URI'])
