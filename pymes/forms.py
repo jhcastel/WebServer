@@ -22,7 +22,7 @@ class UserForm(forms.Form):
         'firstname' : self.cleaned_data['fname'],
         'lastname' : self.cleaned_data['lname'],
         'email' : self.cleaned_data['mail'],
-        'loantype' : set([])}
+        'loantype' : []}
         return user1
 
 def getUser(idadmin):
@@ -69,7 +69,7 @@ class ClientForm(forms.Form):
 		'created' : unicode (datetime.datetime.now().strftime('%Y%m%d%H%M%S')),
 		'modified': unicode(datetime.datetime.now().strftime('%Y%m%d%H%M%S')),
 		'status' : unicode("Pendiente"),
-		'record' : set([])}
+		'record' : []}
 
 		#arma estructura para la cola id|amount|periodo|rate
 		msg=unicode(client1.idclient)+"|"+unicode(client1.loanamount)+"|"+unicode(client1.loanperiod)+"|"+unicode(client1.loanrate)
