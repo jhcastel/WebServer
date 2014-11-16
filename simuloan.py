@@ -60,7 +60,7 @@ def modifica_cliente(idclient,datem,record,lamount,risk):
 	xcn=MongoClient(os.environ['MONGOLAB_URI'])
 	#xcn=MongoClient("mongodb://heroku_app31490466:repll8pcmm3ct12e3j00f2jc3c@ds051970.mongolab.com:51970/heroku_app31490466")
 	db=xcn.get_default_database().client
-	obj=db.find_one("_id":idclient)
+	obj=db.find_one({"_id":idclient})
 	obj['risk']=unicode(risk)
 	obj['modified']=unicode(datem)
 	obj['record']=set(record)
