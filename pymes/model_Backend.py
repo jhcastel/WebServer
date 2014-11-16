@@ -17,8 +17,8 @@ def authenticate(username, password):
         return False
     try:
         user1 = user()
-        user1.get_user(username)
-        if user1.check_password(password):
+        qy = user1.get_user(username)
+        if user1.check_password(qy['password'],password):
             user2 = user1.get_user_all(user1.pk())
             return user2
     except UserModel.DoesNotExist:
