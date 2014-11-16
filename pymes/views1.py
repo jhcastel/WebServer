@@ -46,14 +46,14 @@ def loan_req(request,slug):
 
 def cliupdate(request):
     	context=RequestContext(request)
-		clinum=request.POST["idclient"]
-		cli = load_cli_info(clinum)
-	    idclient = cli['_id']
-	    birthdate = cli['birthdate']
-	    loanpurpose = cli['loanpurpose']
-	    loanamount = cli['loanamount']
-	    loanperiod = cli['loanperiod']
-	    risk = cli['risk']
-	    status = cli['status']
-	    recs = organize_records(cli['record'])
+	clinum=request.POST["idclient"]
+	cli = load_cli_info(clinum)
+	idclient = cli['_id']
+	birthdate = cli['birthdate']
+	loanpurpose = cli['loanpurpose']
+	loanamount = cli['loanamount']
+	loanperiod = cli['loanperiod']
+	risk = cli['risk']
+	status = cli['status']
+	recs = organize_records(cli['record'])
 	return render_to_response('pymes/client_details.html', {'records': recs, 'idclient': idclient, 'birthdate': birthdate, 'loanpurpose': loanpurpose, 'loanamount': loanamount, 'loanperiod': loanperiod, 'risk': risk, 'status': status }, context)
