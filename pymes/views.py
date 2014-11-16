@@ -63,7 +63,7 @@ def user_login(request):
             request.is_authenticated = True
             key = sha.new(str(time.time())).hexdigest()
             cache.set(key,user['UserID'])
-            response = render_to_response('pymes/loans.html',{'data': cache.get(key),'is_authenticated': request.is_authenticated, 'user': user},context)
+            response = render_to_response('pymes/loans.html',{'name': user['firstname'], 'number': user['UserID'], 'is_authenticated': request.is_authenticated, 'loanlist': user['loantype']},context)
             response.set_cookie('sess_id', key)
             return response
         else:

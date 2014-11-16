@@ -1,15 +1,13 @@
 {% extends "admin/base_site.html" %}
 {% block content %}
 
-<h2>Este es el user recibido {{ user['firstname'] }} </h2>
-
 {% if is_authenticated %}
     {% csrf_token %}
-<h1>Pymes administration says... hello {{ user }}!</h1>
-<h2>Remember your costumers' site https://simulatorapp.herokuapp.com/pymes/loan_req/{{ user }}</h2>
+<h1>Pymes administration says... hello {{ name }}!</h1>
+<h2>Remember your costumers' site https://simulatorapp.herokuapp.com/pymes/loan_req/{{ number }}</h2>
 <a href="/pymes/logout/">Logout</a><br /><br /><br />
 <ul>
-{% for l in user['loantype'] %}
+{% for l in loanlist %}
 <li>{{ l }}  <a href='/pymes/update/{{ l }}'>Edit</a> <a href='/pymes/delete/{{ l }}'>Delete</a></li>
 {% endfor %}
 </ul>
