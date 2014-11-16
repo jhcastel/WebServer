@@ -11,6 +11,7 @@ from iron_mq import *
 import pymongo
 from pymongo import MongoClient
 import os
+from pymes.models import client, user
 
 class UserForm(forms.Form):
     username = forms.CharField(max_length=20, required=True, label="Username")
