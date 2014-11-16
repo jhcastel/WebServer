@@ -3,11 +3,11 @@
 
 {% if is_authenticated %}
     {% csrf_token %}
-<h1>Pymes administration says... hello {{ user.firstname }}!</h1>
-<h2>Remember your costumers' site http://elb-webserver04-1842889749.us-west-2.elb.amazonaws.com/pymes/loan_req/{{ user.pk }}</h2>
+<h1>Pymes administration says... hello {{ user['firstname'] }}!</h1>
+<h2>Remember your costumers' site https://simulatorapp.herokuapp.com/pymes/loan_req/{{ user['UserID'] }}</h2>
 <a href="/pymes/logout/">Logout</a><br /><br /><br />
 <ul>
-{% for l in user.loantype %}
+{% for l in user['loantype'] %}
 <li>{{ l }}  <a href='/pymes/update/{{ l }}'>Edit</a> <a href='/pymes/delete/{{ l }}'>Delete</a></li>
 {% endfor %}
 </ul>
