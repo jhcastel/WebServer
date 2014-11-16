@@ -4,18 +4,19 @@ import os
 from pymongo import MongoClient
 
 def DB_Con():
-    db = MongoClient(os.environ['MONGOLAB_URI'])
-    return db
+    xcn = MongoClient(os.environ['MONGOLAB_URI'])
+    return xcn
 
 class user():
-        db = MongoClient(os.environ['MONGOLAB_URI'])
+        xcn = MongoClient(os.environ['MONGOLAB_URI'])
+        db = xcn.get_default_database().user
 
         def __init_(self):
-            user = db.user
+            user = db
             return user
 
         def save(self, data):
-            iuser = self.insert(data)
+            iuser = db.insert(data)
             return iuser
 
         def __unicode__(self):
@@ -46,14 +47,15 @@ class user():
 
 
 class client():
-    db = MongoClient(os.environ['MONGOLAB_URI'])
+    xcn = MongoClient(os.environ['MONGOLAB_URI'])
+    db = xcn.get_default_database().client
 
     def __init_(self):
-        cliente = db.client
+        cliente = db
         return cliente
 
     def save(self, data):
-        icli = self.insert(data)
+        icli = db.insert(data)
         return icli
 
     def get_clients(self, raw_idadmin):
