@@ -8,14 +8,16 @@ def DB_Con():
     return xcn
 
 class user():
-        xcn = MongoClient(os.environ['MONGOLAB_URI'])
-        db = xcn.get_default_database().user
 
         def __init_(self):
+            xcn = MongoClient(os.environ['MONGOLAB_URI'])
+            db = xcn.get_default_database().user
             user = db
             return user
 
         def save(self, data):
+            xcn = MongoClient(os.environ['MONGOLAB_URI'])
+            db = xcn.get_default_database().user
             iuser = db.insert(data)
             return iuser
 
@@ -47,14 +49,16 @@ class user():
 
 
 class client():
-    xcn = MongoClient(os.environ['MONGOLAB_URI'])
-    db = xcn.get_default_database().client
-
+    
     def __init_(self):
+        xcn = MongoClient(os.environ['MONGOLAB_URI'])
+        db = xcn.get_default_database().client
         cliente = db
         return cliente
 
     def save(self, data):
+        xcn = MongoClient(os.environ['MONGOLAB_URI'])
+        db = xcn.get_default_database().client
         icli = db.insert(data)
         return icli
 
