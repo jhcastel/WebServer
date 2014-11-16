@@ -28,15 +28,15 @@ class user():
         	return self.UserID
 
         def get_user(self, raw_username): 
-        	query = user.objects.get(username = raw_username)
+        	query = self.find_one('username' : raw_username)
         	return query
 
         def get_user_all(self, ID_num):
-            usr2 = user.objects.get(UserID = int(ID_num))
+            usr2 = self.find_one('_id' : int(ID_num))
             return usr2
 
         def set_password(self, raw_password):
-        	self.password = make_password(raw_password)
+        	self['password'] = make_password(raw_password)
 
         def check_password(self, raw_password):
         	def setter(raw_password):

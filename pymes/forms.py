@@ -19,13 +19,21 @@ class UserForm(forms.Form):
     mail = forms.CharField(max_length=30, required=True, label="e-mail")
 
     def save(self):
-        user1 = {'username' : self.cleaned_data['username'],
+        user1 = {
+        'UserID' : count_regs() + 1,
+        'username' : self.cleaned_data['username'],
         'password' : make_password(self.cleaned_data['password']),
         'firstname' : self.cleaned_data['fname'],
         'lastname' : self.cleaned_data['lname'],
         'email' : self.cleaned_data['mail'],
         'loantype' : []}
         return user1
+
+def count_regs():
+    xcn = MongoClient(os.environ['MONGOLAB_URI'])
+    db = xcn.get_default_database().user
+    i = db.count()
+    return i
 
 def getUser(idadmin):
 	reg=user()
