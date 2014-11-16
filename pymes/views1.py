@@ -36,6 +36,13 @@ def loan_req(request,slug):
 			created = True
 	        	clinum = request.POST['idclient']
 	        	cli = load_cli_info(clinum)
+	        	idclient = clidata['_id']
+				birthdate = clidata['birthdate']
+				loanpurpose = clidata['loanpurpose']
+				loanamount = clidata['loanamount']
+				loanperiod = clidata['loanperiod']
+				risk = clidata['risk']
+				status = clidata['status']
 	        	to_url = 'pymes/client_details.html'
 	else:
 		cat_choices = get_cats(int(slug))
