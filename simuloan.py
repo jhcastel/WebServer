@@ -133,10 +133,13 @@ mq=IronMQ()
 queue=mq.queue("queue")
 dict=queue.get()
 if dict is not None:
-	datos=str(dict)
-	cad=datos.split("u")
-	msg=convertir(cad[3])
-	msgid=convertir(cad[10])
+	a=dict['messages'][0]
+	msg=a['body']
+	msgid=a['id']
+	#datos=str(dict)
+	#cad=datos.split("u")
+	#msg=convertir(cad[3])
+	#msgid=convertir(cad[10])
 	genera_plan(msg,msgid)
 else:
 	print "No hay mensajes en la cola"
