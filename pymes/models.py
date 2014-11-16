@@ -18,7 +18,7 @@ class user():
         def save(self, data):
             xcn = MongoClient(os.environ['MONGOLAB_URI'])
             db = xcn.get_default_database().user
-            iuser = db.insert(data)
+            iuser = db.save(data)
             return iuser
 
         def __unicode__(self):
@@ -63,7 +63,7 @@ class client():
     def save(self, data):
         xcn = MongoClient(os.environ['MONGOLAB_URI'])
         db = xcn.get_default_database().client
-        icli = db.insert(data)
+        icli = db.save(data)
         return icli
 
     def get_clients(self, raw_idadmin):
