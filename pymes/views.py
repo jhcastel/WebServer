@@ -31,7 +31,8 @@ def register(request):
 
             #Se aplica hash al password y sse guarda en la DB
             #user.set_pass(user.password)
-            user.save(us_list)
+            us = user()
+            us.save(us_list)
             registered = True
             return HttpResponseRedirect('/pymes/')
 
