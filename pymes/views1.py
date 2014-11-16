@@ -8,8 +8,6 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 import datetime
-#from admin import LoanTAdmin
-
 from forms import UserForm, LoanForm, ClientForm
 from pymes.models import client, user
 from pymes.model_Backend import get_cats, get_rates, load_cli_info, organize_records, id_cats
@@ -18,6 +16,13 @@ def loan_req(request,slug):
 	context=RequestContext(request)
 	created = False
         cli = ""
+        idclient = ""
+        birthdate = ""
+        loanpurpose = ""
+        loanamount = ""
+        loanperiod = ""
+        risk = ""
+        status = ""
 	to_url = 'pymes/loan_req.html'
 	if request.method == 'POST':
 		idpyme=int(slug)
@@ -25,8 +30,9 @@ def loan_req(request,slug):
 		if form.is_valid():
 			rate_dict = get_rates(int(slug))
 			cat_dict = id_cats(int(slug))
-			client = form.save(idpyme, cat_dict, rate_dict)
-			client.save()
+			clidata = form.save(idpyme, cat_dict, rate_dict)
+			client1 = client()
+			client1.save(clidata)
 			created = True
 	        	clinum = request.POST['idclient']
 	        	cli = load_cli_info(clinum)
@@ -36,11 +42,18 @@ def loan_req(request,slug):
 		rate_dict = get_rates(int(slug))
 		form = ClientForm(idpyme=int(slug),custom_choices= cat_choices)
 		to_url = 'pymes/loan_req.html'
-	return render_to_response(to_url, {'form': form, 'created': created, 'data': cli,}, context)
+	return render_to_response(to_url, {'form': form, 'created': created, 'idclient': idclient, 'birthdate': birthdate, 'loanpurpose': loanpurpose, 'loanamount': loanamount, 'loanperiod': loanperiod, 'risk': risk, 'status': status}, context)
 
 def cliupdate(request):
     	context=RequestContext(request)
-	clinum=request.POST["data.idclient"]
+	clinum=request.POST["idclient"]
 	cli = load_cli_info(clinum)
-        recs = organize_records(cli.record)
-	return render_to_response('pymes/client_details.html', {'records': recs, 'data': cli}, context)
+    idclient = cli['_id']
+    birthdate = cli['birthdate']
+    loanpurpose = cli['loanpurpose']
+    loanamount = cli['loanamount']
+    loanperiod = cli['loanperiod']
+    risk = cli['risk']
+    status = cli['status']
+    recs = organize_records(cli['record'])
+	return render_to_response('pymes/client_details.html', {'records': recs, 'idclient': idclient, 'birthdate': birthdate, 'loanpurpose': loanpurpose, 'loanamount': loanamount, 'loanperiod': loanperiod, 'risk': risk, 'status': status }, context)
