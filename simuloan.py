@@ -138,5 +138,5 @@ if dict is not None:
 	msg=convertir(cad[3])
 	msgid=convertir(cad[10])
 	genera_plan(msg,msgid)
-else
+else:
 	print "No hay mensajes en la cola"
