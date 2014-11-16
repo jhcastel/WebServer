@@ -8,6 +8,8 @@ from bootstrap3_datetime.widgets import DateTimePicker
 from django import forms
 from pymes.model_Backend import get_cats, get_rates
 from iron_mq import *
+import pymongo
+from pymongo import MongoClient
 
 class UserForm(forms.Form):
     username = forms.CharField(max_length=20, required=True, label="Username")
@@ -70,6 +72,10 @@ class ClientForm(forms.Form):
 		'modified': unicode(datetime.datetime.now().strftime('%Y%m%d%H%M%S')),
 		'status' : unicode("Pendiente"),
 		'record' : []}
+		
+		xcn=MongoClient(os.environ['MONGOLAB_URI'])
+		db=xcn.get_default_database().client
+		db.insert(client)
 
 		#arma estructura para la cola id|amount|periodo|rate
 		msg=unicode(client1.idclient)+"|"+unicode(client1.loanamount)+"|"+unicode(client1.loanperiod)+"|"+unicode(client1.loanrate)

@@ -26,7 +26,7 @@ def loan_req(request,slug):
 			rate_dict = get_rates(int(slug))
 			cat_dict = id_cats(int(slug))
 			client = form.save(idpyme, cat_dict, rate_dict)
-	        	client.save()
+			client.save()
 			created = True
 	        	clinum = request.POST['idclient']
 	        	cli = load_cli_info(clinum)
