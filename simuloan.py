@@ -7,35 +7,14 @@ import time
 import math
 import random
 import datetime
-#import boto
-import multiprocessing
-#from greenlet import greenlet
-#from boto.sqs.message import Message
-#from boto.sqs.message import RawMessage
-#from dynamodb_mapper.model import DynamoDBModel, autoincrement_int
-#from dynamodb_mapper.model import ConnectionBorg
+import pymongo
+import json
 from iron_mq import *
 from decimal import *
+from pymongo import MongoClient
+from djangotoolbox.fields import ListField
+from django.db import models
 
-#class client(DynamoDBModel):
-#        __table__=u"client"
-#        __hash_key__=u"idclient"
-#        __schema__ = {
-#               u"idclient": unicode,
-#                u"idadmin": int,
-#                u"birthdate": unicode,
-#               u"loanperiod": int,
-#                u"loanpurpose": unicode,
-#                u"loanrate": unicode,
-#				u"loanamount":unicode,
-#                u"status": unicode,
-#                u"risk": unicode,
-#                u"created": unicode,
-#                u"modified": unicode,
-#                u"record": set,
-#       }
-#	__defaults__ ={
-#        }
 class client(models.Model):
     idclient = models.IntegerField(primary_key=True,unique=True)
     idadmin = models.IntegerField()
@@ -77,14 +56,17 @@ def elimina_msj(id):
 #Funcion que guarda el plan de pagos en la bd y cambia el estado en la bd
 		
 def modifica_cliente(idclient,datem,record,lamount,risk):
-	obj=client().get(unicode(idclient))
-	#obj.idclient=unicode(idclient)
-	obj.risk=unicode(risk)
-	obj.modified=unicode(datem)
-	obj.record=set(record)
-	obj.loanamount=unicode(lamount)
-	obj.status=u"Procesado"
-	obj.save()	
+	#Abre conexion a la db en heroku
+	xcn=MongoClient(os.environ['MONGOLAB_URI'])
+	#xcn=MongoClient("mongodb://heroku_app31490466:repll8pcmm3ct12e3j00f2jc3c@ds051970.mongolab.com:51970/heroku_app31490466")
+	db=xcn.get_default_database().client
+	obj=db.find_one("_id":idclient)
+	obj['risk']=unicode(risk)
+	obj['modified']=unicode(datem)
+	obj['record']=set(record)
+	obj['loanamount']=unicode(lamount)
+	obj['status']="Procesado"
+	db.save(obj)
 	print "Actualizado el registro del cliente"
 
 def genera_plan(msg,id):
@@ -104,7 +86,7 @@ def genera_plan(msg,id):
 	for i in range(0, len(plan)):
 		print plan[i]
 	#update bd
-	#modifica_cliente(unicode(lclie),unicode(date_mod),set(plan),unicode(lamount),str(round(rsk,2)))
+	modifica_cliente(unicode(lclie),unicode(date_mod),set(plan),unicode(lamount),str(round(rsk,2)))
 	#elimina mensaje de la cola
 	elimina_msj(id)
 	print "Mensaje eliminado"
