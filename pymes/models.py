@@ -27,12 +27,16 @@ class user():
         def pk(self):
         	return self.UserID
 
-        def get_user(self, raw_username): 
-        	query = self.find_one({'username' : raw_username})
+        def get_user(self, raw_username):
+            xcn = MongoClient(os.environ['MONGOLAB_URI'])
+            db = xcn.get_default_database().user
+        	query = db.find_one({'username' : raw_username})
         	return query
 
         def get_user_all(self, ID_num):
-            usr2 = self.find_one({'_id' : int(ID_num)})
+            xcn = MongoClient(os.environ['MONGOLAB_URI'])
+            db = xcn.get_default_database().user
+            usr2 = db.find_one({'_id' : int(ID_num)})
             return usr2
 
         def set_password(self, raw_password):
