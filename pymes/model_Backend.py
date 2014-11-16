@@ -45,7 +45,7 @@ def check_session(request):
 def delete_ltype(us_id, ltype):
     user1 = user()
     user2 = user1.get_user_all(us_id)
-    user2.loantype.remove(ltype)
+    user2['loantype'].remove(ltype)
     return user2
 
 def get_cats(us_id):

@@ -128,8 +128,9 @@ def update(request, idloantype):
         categ, rate = idloantype.split(":")
         data = {'category': categ, 'rate': rate}
         form = LoanForm(data)
-        user1 = delete_ltype(user_id, idloantype)
-        user1.save()    
+        usdata = delete_ltype(user_id, idloantype)
+        user1 = user()
+        user1.save(usdata)    
         response = render_to_response('pymes/add_loan.html', {'form': form, 'created': created, 'data': key}, context)
         response.set_cookie('sess_id', key)
         return response
@@ -148,9 +149,10 @@ def delete(request, idloantype):
         key = sha.new(str(time.time())).hexdigest()
         cache.set(key,user_id)
         # Have we been provided with a valid form?
-        user1 = delete_ltype(user_id, idloantype)
-        user1.save()
-        response = render_to_response('pymes/loans.html',{'is_authenticated': request.is_authenticated, 'user': user1},context)
+        usdata = delete_ltype(user_id, idloantype)
+        user1 = user()
+        user1.save(usdata)
+        response = render_to_response('pymes/loans.html',{'name': usdata['firstname'], 'number': usdata['UserID'], 'loanlist': usdata['loantype'], 'is_authenticated': request.is_authenticated},context)
         response.set_cookie('sess_id', key)
         return response
     else:
@@ -174,10 +176,11 @@ def add_loan(request):
         if request.method == 'POST':
             # Have we been provided with a valid form?
             if form.is_valid():
-                user1 = form.save(user_id)
-                user1.save()
+                usdata = form.save(user_id)
+                user1 = user()
+                user1.save(usdata)
                 created = True
-                response = render_to_response('pymes/loans.html',{'is_authenticated': request.is_authenticated, 'user': user1},context)
+                response = render_to_response('pymes/loans.html',{'name': usdata['firstname'], 'number': usdata['UserID'], 'loanlist': usdata['loantype'], 'is_authenticated': request.is_authenticated}, context)
                 response.set_cookie('sess_id', key)
                 return response
             else:

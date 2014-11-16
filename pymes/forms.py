@@ -52,10 +52,9 @@ class LoanForm(forms.Form):
     rate = forms.DecimalField(required=True, label="Rate")
 
     def save(self, idadmin):
-        user1 = user()
         user2 = user1.get_user_all(idadmin)
         new_ltype=unicode(self.cleaned_data['category'])+":"+unicode(self.cleaned_data['rate'])
-        user2.loantype.add(new_ltype)
+        user2['loantype'].append(new_ltype)
         return user2
             		
 
