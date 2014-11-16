@@ -42,7 +42,7 @@ class user():
         def set_password(self, raw_password):
         	self['password'] = make_password(raw_password)
 
-        def check_password(db_pass, raw_password):
+        def check_password(self, db_pass, raw_password):
         	def setter(raw_password):
         		self.set_password(raw_password)
         		self.save(update_fields=["password"])
