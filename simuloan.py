@@ -132,7 +132,7 @@ def genera_cuotas(cod,am,quo,EAR):
 mq=IronMQ()
 queue=mq.queue("queue")
 dict=queue.get()
-if dict is not None
+if dict is not None:
 	datos=str(dict)
 	cad=datos.split("u")
 	msg=convertir(cad[3])
