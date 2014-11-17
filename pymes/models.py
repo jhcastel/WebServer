@@ -73,7 +73,7 @@ class client():
         j = 0
         arr1 = []
         arr2 = []
-        datos = {0:'idclient',
+        datos = {0:'_id',
 		        1:'birthdate',
 		        2:'loanamount',
 		        3:'loanperiod',
