@@ -50,7 +50,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'hirefire/7f53079738f19d64899f5c648a5c9db8e260cee5/info')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'hirefire/7f53079738f19d64899f5c648a5c9db8e260cee5/tets.txt')
 
 ALLOWED_HOSTS = []
 
