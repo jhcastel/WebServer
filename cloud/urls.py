@@ -11,6 +11,6 @@ urlpatterns = patterns('',
     url(r'^pymes/', include('pymes.urls', namespace="pymes")),
     #url(r'^simu/', include(admin.site.urls)),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^hirefire/7f53079738f19d64899f5c648a5c9db8e260cee5/info', TemplateView.as_view(template_name=settings.MEDIA_ROOT, content_type='application/json')), #{'template': settings.MEDIA_ROOT, 'mimetype': 'text/plain'})
+    url(r'^hirefire/7f53079738f19d64899f5c648a5c9db8e260cee5/info', TemplateView.as_view(template_name='info', content_type='application/json')), #{'template': settings.MEDIA_ROOT, 'mimetype': 'text/plain'})
     #url(r'^hirefire/','serve', {'document_root': settings.MEDIA_ROOT}),
 )
