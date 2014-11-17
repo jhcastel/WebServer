@@ -106,7 +106,7 @@ def detail_records(request,idclient):
         key = sha.new(str(time.time())).hexdigest()
         user2 = load_user(user_id)
         cli = load_cli_details(idclient, user_id)
-        recs = organize_records(cli.record)
+        recs = organize_records(cli['record'])
         cache.set(key,user2['UserID'])
         response = render_to_response('pymes/detail_records.html',{'data': cli,'records': recs,'is_authenticated': request.is_authenticated, 'user': user2},context)
         response.set_cookie('sess_id', key)
