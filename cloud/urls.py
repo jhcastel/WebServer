@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
-from django.views.generic.base import direct_to_template
+from django.views.generic.base import TemplateView
 admin.autodiscover()
 
 urlpatterns = patterns('',
