@@ -6,6 +6,8 @@ from pymes import views, admin, views1
 from admin import loan_admin_site
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = patterns('',
     url(r'^register/$', views.register, name='register'),
@@ -26,6 +28,6 @@ urlpatterns = patterns('',
     url (r'^detail_records/(?P<idclient>\d+)/$', views.detail_records, name='detail_records'),
 
     url (r'^client_records/$',views.ClientList, name='ClientList'),
-    url(r'^client_details/$', views1.cliupdate, name='detail_records'),
-	include(r'^hirefire/7f53079738f19d64899f5c648a5c9db8e260cee5/info/$'),
+    url(r'^client_details/$', views1.cliupdate, name='detail_records'), +
+	static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 )
