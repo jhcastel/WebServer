@@ -86,9 +86,9 @@ class client():
 
 	for q in query:
 	    for i in range(9):
-            arr2.append(q[datos[i]])
-        arr1.append(arr2)
-        arr2 = []
+                arr2.append(q[datos[i]])
+            arr1.append(arr2)
+            arr2 = []
         return arr1
 
     def get_client_all(self, ID_num):
