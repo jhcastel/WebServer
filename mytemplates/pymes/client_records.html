@@ -21,13 +21,11 @@
 <td>Modified</td>
 </tr>
 {% for da in data %}
-<tr> {% for d in da %}
 {% if forloop.first %}  
-    <td><a href='/pymes/detail_records/{{ d }}'> {{ d }} </a></td>
+    <td><a href='/pymes/detail_records/{{ da }}'> {{ da }} </a></td>
 {% else %}
-<td>{{ d }}</td> 
+<td>{{ da }}</td> 
 {% endif %}
-{% endfor %}
 </tr>
 {% endfor %}
 </table>
