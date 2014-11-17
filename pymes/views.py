@@ -106,7 +106,7 @@ def detail_records(request,idclient):
         key = sha.new(str(time.time())).hexdigest()
         user2 = load_user(user_id)
         cli = load_cli_details(idclient, user_id)
-        idclient = cli['idclient']
+        idclient = cli['_id']
         birthdate = cli['birthdate']
         loanpurpose = cli['loanpurpose']
         loanamount = cli['loanamount']
