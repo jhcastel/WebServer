@@ -136,8 +136,9 @@ while True:
 		queue=mq.queue("queue")
 		size=queue.size()
 		#actualiza el json que lee el tamaño de la cola
+		data=[[{"name" : "worker", "quantity" : size}]]
 		with open("hirefire/7f53079738f19d64899f5c648a5c9db8e260cee5/info","w") as outfile:
-			json.dump({"name" : "worker", "quantity" : size})
+			json.dump(data,outfile)
 		dict=queue.get()
 		if dict is not None:
 			a=dict['messages'][0]
