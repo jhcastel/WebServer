@@ -29,5 +29,5 @@ urlpatterns = patterns('',
 
     url (r'^client_records/$',views.ClientList, name='ClientList'),
     url(r'^client_details/$', views1.cliupdate, name='detail_records'), +
-	static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+	#static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 )
