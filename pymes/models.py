@@ -87,10 +87,9 @@ class client():
 	for q in query:
 	    for i in range(9):
 		arr2.append(q[datos[i]])
-	    	print arr2
 	    	arr1.append(arr2)
 	    	arr2 = []
-	    j += 1
+        j += 1
         arr1.append('ciclo'+str(j))
     	return arr1
 
