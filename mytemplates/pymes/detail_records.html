@@ -3,7 +3,7 @@
 
 {% if is_authenticated %}
             {% csrf_token %}
-<h1>Detail from client {{ data.idclient }}!</h1>
+<h1>Detail from client {{ idclient }}!</h1>
 <a href="/pymes/logout/">Logout</a><br /><br /><br />
 <h2> Client's Summary </h2><br />
 <table border="2">
@@ -21,16 +21,16 @@
 </tr>
 
 <tr>
-<td>{{ data.idclient }}</td>
-<td>{{ data.birthdate }}</td>
-<td>{{ data.loanpurpose }}</td>
-<td>{{ data.loanamount }}</td>
-<td>{{ data.loanperiod }}</td>
-<td>{{ data.loanrate }}</td>
-<td>{{ data.risk }}</td>
-<td>{{ data.status }}</td>
-<td>{{ data.created }}</td>
-<td>{{ data.modified }}</td>
+<td>{{ idclient }}</td>
+<td>{{ birthdate }}</td>
+<td>{{ loanpurpose }}</td>
+<td>{{ loanamount }}</td>
+<td>{{ loanperiod }}</td>
+<td>{{ loanrate }}</td>
+<td>{{ risk }}</td>
+<td>{{ status }}</td>
+<td>{{ created }}</td>
+<td>{{ modified }}</td>
 </tr>
 
 </table>

@@ -1,8 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% block content %}
 
-<h2>esta es la info transmitida: {{ data }} </h2>
-
 {% if is_authenticated %}
             {% csrf_token %}
 <h1>Client list from {{ name }}!</h1>
@@ -21,11 +19,13 @@
 <td>Modified</td>
 </tr>
 {% for da in data %}
+<tr> {% for d in da %}
 {% if forloop.first %}  
-    <td><a href='/pymes/detail_records/{{ da }}'> {{ da }} </a></td>
+    <td><a href='/pymes/detail_records/{{ d }}'> {{ d }} </a></td>
 {% else %}
-<td>{{ da }}</td> 
+<td>{{ d }}</td> 
 {% endif %}
+{% endfor %}
 </tr>
 {% endfor %}
 </table>
