@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
-import newrelic.agent
 import sys
 import thread
 import time
@@ -129,7 +128,6 @@ def genera_cuotas(cod,am,quo,EAR):
 	return vector
 
 # Configuracion de proceso intenso de CPU corre durante k segundos
-newrelic.agent.initialize('newrelic.ini')
 while True:
 	pass
 	try:
