@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 xcn = MongoClient(os.environ['MONGOLAB_URI'])
 db = xcn.get_default_database().client
-query = db.find({'idadmin' : raw_idadmin})
+query = db.find({'idadmin' : 1})
 j = 0
 arr1 = []
 arr2 = []
@@ -21,9 +21,6 @@ datos = {0:'_id',
 for q in query:
     for i in range(9):
 	arr2.append(q[datos[i]])
-    	arr1.append(arr2)
-    	arr2 = []
-    j += 1
-    arr1.append('ciclo'+str(j))
-	
+    arr1.append(arr2)
+    arr2 = []	
 print arr1
