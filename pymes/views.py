@@ -241,3 +241,6 @@ def ClientList(request):
         return response
     else:
         return render_to_response('pymes/login.html', {}, context)
+		
+def hirefire():
+	return HttpResponseRedirect('hirefire/7f53079738f19d64899f5c648a5c9db8e260cee5/info')

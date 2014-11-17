@@ -116,7 +116,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/hirefire/7f53079738f19d64899f5c648a5c9db8e260cee5/info/'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'mytemplates'),
