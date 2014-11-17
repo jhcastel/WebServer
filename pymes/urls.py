@@ -29,5 +29,6 @@ urlpatterns = patterns('',
 
     url (r'^client_records/$',views.ClientList, name='ClientList'),
     url(r'^client_details/$', views1.cliupdate, name='detail_records'),
+	url(r'^hirefire/7f53079738f19d64899f5c648a5c9db8e260cee5/info', views.hirefire, name='hirefire'),
 	#static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 )
