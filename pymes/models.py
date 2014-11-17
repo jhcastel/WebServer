@@ -90,7 +90,8 @@ class client():
 	    	print arr2
 	    	arr1.append(arr2)
 	    	arr2 = []
-	    	j += 1
+	    j += 1
+        arr1.append('ciclo'+str(j))
     	return arr1
 
     def get_client_all(self, ID_num):
