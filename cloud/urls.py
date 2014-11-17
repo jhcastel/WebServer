@@ -10,5 +10,5 @@ urlpatterns = patterns('',
     url(r'^pymes/', include('pymes.urls', namespace="pymes")),
     #url(r'^simu/', include(admin.site.urls)),
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^hirefire/', include('hirefire.urls', namespace="hirefire")),
+	url(r'^hirefire/', include('views.hirefire', namespace="hirefire")),
 )
